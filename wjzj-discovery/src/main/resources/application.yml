@@ -1,0 +1,10 @@
+server:
+  port: 9090
+# eureka配置
+eureka:
+  instance:
+    hostname: discovery
+    port: ${server.port}
+  client:
+    register-with-eureka: false # 是否将自己注册到eureka注册中心
+    fetch-registry: false # 是否从eureka注册中心获取注册信息

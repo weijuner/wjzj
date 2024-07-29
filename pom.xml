@@ -5,13 +5,112 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>wjzj</artifactId>
+    <artifactId>wjzj-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>wjzj-common</module>
+        <module>wjzj-flowable</module>
+        <module>wjzj-discovery</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.16.RELEASE</version>
+    </parent>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <!-- MyBatis依赖版本 -->
+        <mapper.version>3.3.6</mapper.version>
+        <mybatis.version>3.4.4</mybatis.version>
+        <mybatis.spring.version>1.3.1</mybatis.spring.version>
+        <pagehelper.version>4.1.1</pagehelper.version>
+        <druid.version>1.0.15</druid.version>
+        <mybatis.generator.version>1.3.2</mybatis.generator.version>
+        <mybatis-spring-boot-starter.version>1.3.0</mybatis-spring-boot-starter.version>
+        <!-- swagger2依赖版本 2.6.1 -->
+        <swagger2.version>2.6.1</swagger2.version>
+        <!-- hystrix依赖版本 -->
+        <hystrix.version>1.5.12</hystrix.version>
+        <!-- fastjson.versionx依赖版本 -->
+        <fastjson.version>1.2.8</fastjson.version>
+        <!-- redis -->
+        <data-redis.version>1.8.4.RELEASE</data-redis.version>
+        <jedis.version>2.9.0</jedis.version>
+        <!-- apache.commons依赖版本 -->
+        <apache-commons.version>3.4</apache-commons.version>
+        <!-- logstash依赖版本 -->
+        <logstash.version>3.4</logstash.version>
+        <!--flowable工作流依赖-->
+        <flowable.version>6.7.2</flowable.version>
+        <!-- spring-boot-admin-starter-client依赖版本 -->
+        <spring-boot-admin-starter-client.version>1.3.2</spring-boot-admin-starter-client.version>
+        <!-- aliyun依赖版本 -->
+        <aliyun.version>3.2.6</aliyun.version>
+        <aliyun-dysmsapi.version>1.0.0</aliyun-dysmsapi.version>
+        <feign-httpclient.version>8.17.0</feign-httpclient.version>
+        <drools.version>6.3.0.Final</drools.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.feign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+            <version>${feign-httpclient.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!--依赖管理，用于管理spring-cloud的依赖，其中Dalston.SR1是版本号 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- 引入 SpringCloud 微服务依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>20.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
